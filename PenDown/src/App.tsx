@@ -1,35 +1,80 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import './index.css'
+import { useState } from 'react'
 
-function App() {
-  const [count, setCount] = useState(0)
+let layoutOption = [<DefaultDoc />, <PageDoc />, <CornellDoc />];
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+function Save() {
+
+  alert("Deez!!!!");
+
 }
 
-export default App
+function DefaultDoc() {
+
+  return (
+
+    <div contentEditable = "true" className = "col-span-6 row-span-6" id = "box">Default</div>
+    
+  );
+
+}
+
+function PageDoc() {
+
+  return (
+
+    <>
+
+      <div contentEditable = "true" className = "col-span-3 row-span-6" id = "box">Page</div>
+      <div contentEditable = "true" className = "col-span-3 row-span-6" id = "box2">Page</div>
+      
+    </>
+
+  );
+
+}
+
+function CornellDoc() {
+
+  return (
+    
+    <>
+
+      <div contentEditable = "true" className = "col-span-2 row-span-5" id = "box">Cornell</div>
+      <div contentEditable = "true" className = "col-span-4 row-span-5" id = "box2">Cornell</div>
+      <div contentEditable = "true" className = "col-span-6 row-span-1" id = "box3">Cornell</div>
+      
+    </>
+    
+  );
+
+}
+
+export default function App() {
+
+  const [choice, setCount] = useState(0);
+
+  return (
+
+    <>
+      
+      
+
+      <div className = "flex justify-between">
+
+        <div onClick={() => { setCount(0); }}>Default Layout</div>
+        <div onClick={() => { setCount(1); }}>Page Layout</div>
+        <div onClick={() => { setCount(2); }}>Cornell Layout</div>
+      
+      </div>
+
+      <div className = "border-4 w-[90vw] h-[90vh] text-left grid grid-cols-6 grid-rows-6">{layoutOption[choice]}</div>
+      
+      <div className = "border-4" onClick={Save}>Save</div>
+    
+    </>
+
+  )
+
+}
